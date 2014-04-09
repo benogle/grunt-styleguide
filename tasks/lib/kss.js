@@ -55,6 +55,7 @@ module.exports = {
 
             }
 
+            options.loadPath = styleguide.framework.loadPath
 
             for (var k in template.include) {
               if (/(style|less|stylus|sass|css)/.test(k)) {
