@@ -55,7 +55,16 @@ module.exports = {
 
             }
 
-            options.includes = template.include;
+
+            for (var k in template.include) {
+              if (/(style|less|stylus|sass|css)/.test(k)) {
+                options[k] = options[k] || [];
+                options[k] = Array.isArray(options[k]) ? options[k] : [options[k]];
+                template.include[k].map(function(arg){
+                  options[k].push(arg.path)
+                })
+              }
+            }
 
             grunt.file.mkdir(files.dest);
             compile(args.concat([files.base, files.dest]), options, done);
