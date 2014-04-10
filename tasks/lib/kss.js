@@ -55,17 +55,23 @@ module.exports = {
 
             }
 
-            options.loadPath = styleguide.framework.loadPath
+            options.loadPath = styleguide.framework.loadPath;
+
+            console.log(template.include);
+
+            function pushOption(key, arg){
+              options[key].push(arg.path);
+            }
 
             for (var k in template.include) {
               if (/(style|less|stylus|sass|css)/.test(k)) {
                 options[k] = options[k] || [];
                 options[k] = Array.isArray(options[k]) ? options[k] : [options[k]];
-                template.include[k].map(function(arg){
-                  options[k].push(arg.path)
-                })
+                template.include[k].map(pushOption);
               }
             }
+
+            console.log(options);
 
             grunt.file.mkdir(files.dest);
             compile(args.concat([files.base, files.dest]), options, done);
