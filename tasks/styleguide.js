@@ -19,7 +19,7 @@ module.exports = function(grunt) {
         helper = require('./helper').init(grunt),
         plugin = {},
         _ = grunt.util._;
-        
+
     // ==================================
     // PLUGIN DEFAULTS
     // ==================================
@@ -72,6 +72,7 @@ module.exports = function(grunt) {
                             var extension = path.extname(item).replace('.', ''),
                                 location = path.relative(base, item);
 
+                            extension = extension === 'scss' ? 'sass' : extension;
                             location = location + '?v=' + fs.statSync(item).mtime.getTime();
 
                             resources[extension] = resources[extension] || [];
