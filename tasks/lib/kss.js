@@ -59,15 +59,16 @@ module.exports = {
 
             console.log(template.include);
 
-            function pushOption(key, arg){
-              options[key].push(arg.path);
+            // Outside of the loop to make the linter happy
+            function getPath(arg){
+              return arg.path;
             }
 
             for (var k in template.include) {
               if (/(style|less|stylus|sass|css)/.test(k)) {
                 options[k] = options[k] || [];
                 options[k] = Array.isArray(options[k]) ? options[k] : [options[k]];
-                template.include[k].map(pushOption);
+                options[k] = options[k].concat(template.include[k].map(getPath));
               }
             }
 
