@@ -45,7 +45,7 @@ module.exports = {
             options.template = (template.src.length !== 0 && template.src || defaultTemplate);
 
             // set preprocessor options
-            if (/(style|less|stylus|sass|css)/.test(styleguide.preprocessor)) {
+            if (/(style|less|stylus|sass|css|js|coffee)/.test(styleguide.preprocessor)) {
 
                 if (!grunt.file.exists(files.src[0])) {
                     grunt.fail.warn('Specify an absolute path to continue');
@@ -65,7 +65,7 @@ module.exports = {
             }
 
             for (var k in template.include) {
-              if (/(style|less|stylus|sass|css)/.test(k)) {
+              if (/(style|less|stylus|sass|css|js|coffee)/.test(k)) {
                 options[k] = options[k] || [];
                 options[k] = Array.isArray(options[k]) ? options[k] : [options[k]];
                 options[k] = options[k].concat(template.include[k].map(getPath));

@@ -30,7 +30,9 @@ module.exports = function(grunt) {
             'sass': 'scss sass',
             'less': 'less',
             'stylus': 'styl style',
-            'css': 'css'
+            'css': 'css',
+            'js': 'js',
+            'coffee': 'coffee'
         },
 
         util: {
